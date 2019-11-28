@@ -1,26 +1,37 @@
+body {background: #A5B8F0;}
+
 h1 a {
     color: #09AA84;
     font-family: 'Pacifico';
 }
 
 body {
-    padding-left: 15px;
+    padding-left: 180px;
+    padding-right: 10;
+    padding: 0px 10px 50px 180px;
 }
 
 .page-header {
-    background-color: #ff9400;
-    margin-top: 0;
-    padding: 20px 20px 20px 40px;
+    background-color: #D3F67B;
+    margin-top: 10;
+    margin-left: 0;
+    margin_right: 10;
+    padding: 20px 20px 30px 40px;
 }
 
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
-    color: #ffffff;
+    color: #A5B8F0;
     font-size: 36pt;
     text-decoration: none;
 }
 
 .content {
-    margin-left: 40px;
+    background: #AC8EF6;
+    min-height: 500px;
+    right: 10;
+    left: 10;
+    top: 10;
+    padding: 10px 20px 25px
 }
 
 h1, h2, h3, h4 {
