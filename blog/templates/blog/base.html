@@ -3,7 +3,7 @@
     <head>
         <style type="text/css">
 		.sidenav {
-			height: 550px;
+			height: 90%;
 			width: 160px;
 			position: fixed;
 			z-index:1;
@@ -12,6 +12,16 @@
 			background-color:#D3F67B;
 			overflow-x: :hidden;
 			padding-top:40px;
+		}
+
+		.sidenav p {
+			padding:6px 8px 6px 16px;
+			text-decoration: none;
+			text-align: none;
+			font-size:25px;
+			color: #AC8EF6;
+			display: block;
+			font-family: 'Pacifico'
 		}
 
 		.sidenav a {
@@ -25,7 +35,7 @@
 		}
 
 		.sidenav a:hover{
-			color:#f1f1f1;
+			color: #AC8EF6;
 		}
 
 		.main{
@@ -44,24 +54,22 @@
             left: 10;
             right: 10;
             bottom: 0;
-            height: 40px;
+            height: 6,5%;
+            font-family: 'Cabin';
             padding: 10px 10px 10px;
             text-align: center;
         }
-	</style>
+	    </style>
         <title>Django Girls blog</title>
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.iso' %}"/>
+	    <link href="https://fonts.googleapis.com/css?family=Pacifico&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Cabin&subset=latin,cyrillic" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-	<link href="https://fonts.googleapis.com/css?family=Pacifico&subset=latin,cyrillic" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     </head>
     <body>
     <div class="page-header">
-        {% if user.is_authenticated %}
-            <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
-        {% else %}
-            <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
-        {% endif %}
         <h1><a href="/">Django Girls Blog</a></h1>
     </div>
     <div class="content">
@@ -73,9 +81,16 @@
         </div>
     </div>
     <div class="sidenav">
+        {% if user.is_authenticated %}
+        <p><small>Hello {{ user.username }}</small><a href="{% url 'logout' %}">Log out</a></p>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="/register/">Registration</a>
+        {% endif %}
 		<a href="/">Home</a>
 		<a href="/post/new/">New Post</a>
 		<a href="/drafts/">Drafts</a>
+
 	</div>
     <div class="footer">2019, Django Girls Rogoyx Blog
     </div>
