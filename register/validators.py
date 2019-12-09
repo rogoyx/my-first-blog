@@ -3,7 +3,7 @@ from django.utils.translation import gettext as _
 
 
 class MinimumLengthValidator:
-    def __init__(self, min_length=5):
+    def __init__(self, min_length=1):
         self.min_length = min_length
 
     def validate(self, password, user=None):
@@ -12,7 +12,7 @@ class MinimumLengthValidator:
         if len(password) < self.min_length:
             print('bbb')
             raise ValidationError(
-                _("Пароль должен содержать как минимум %(min_length)d символов."),
+                _("Пароль должен содержать как минимум %(min_length)d символ."),
                 code='password_too_short',
                 params={'min_length': self.min_length},
             )

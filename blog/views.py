@@ -10,8 +10,8 @@ from django.template import RequestContext
 
 
 def post_list(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    paginator = Paginator(posts, 2)
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+    paginator = Paginator(posts, 10)
     page = request.GET.get('page')
     try:
         postss = paginator.page(page)
