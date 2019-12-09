@@ -7,9 +7,25 @@
 					<p>Published: {{ post.published_date }}</p>
 				</div>
 				<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-				<p>{{ post.text|linebreaksbr }}</p>
-				<a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.comments.count }}</a>
+				<p>{{ post.text|truncatewords:100|safe }}</p>
+            	<p><a href="{% url 'post_detail' pk=post.pk %}">Читать полностью</a></p>
+				<p><a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.comments.count }}</a></p>
 		</div>
 	{% endfor %}
+
+	<div class="pages" align="center">
+
+            {% if posts.has_previous %}
+                <a href="?page={{ posts.previous_page_number }}">Предыдущая</a>
+            {% endif %}
+
+            <span class="current">
+                Страница {{ posts.number }} из {{ posts.paginator.num_pages }}.
+            </span>
+
+            {% if posts.has_next %}
+                <a href="?page={{ posts.next_page_number }}">Следующая</a>
+            {% endif %}
+        </div>
 {% endblock %}
         
