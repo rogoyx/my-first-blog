@@ -4,27 +4,27 @@
 	{% for post in posts %}
 		<div class="post">
         		<div class="date">
-					<p>Опубликовано: {{ post.published_date }}</p>
+					<p>Published: {{ post.published_date }}</p>
 				</div>
 				<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
 				<p>{{ post.text|truncatewords:100|safe }}</p>
-            	<p><a href="{% url 'post_detail' pk=post.pk %}">Читать полностью</a></p>
-				<p><a href="{% url 'post_detail' pk=post.pk %}">Комментарии: {{ post.comments.count }}</a></p>
+            	<p><a href="{% url 'post_detail' pk=post.pk %}">Read completely</a></p>
+				<p><a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.comments.count }}</a></p>
 		</div>
 	{% endfor %}
 
 	<div class="pages" align="center">
 
             {% if posts.has_previous %}
-                <a href="?page={{ posts.previous_page_number }}">Предыдущая</a>
+                <a href="?page={{ posts.previous_page_number }}">Previous</a>
             {% endif %}
 
             <span class="current">
-                Страница {{ posts.number }} из {{ posts.paginator.num_pages }}.
+                Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
             </span>
 
             {% if posts.has_next %}
-                <a href="?page={{ posts.next_page_number }}">Следующая</a>
+                <a href="?page={{ posts.next_page_number }}">Next</a>
             {% endif %}
         </div>
 {% endblock %}

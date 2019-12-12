@@ -90,14 +90,14 @@
     </div>
     <div class="sidenav">
         {% if user.is_authenticated %}
-        <p><small>Привет, {{ user.username }}!</small><a href="{% url 'logout' %}">Выйти</a></p>
+        <p><small>Hello {{ user.username }}!</small><a href="{% url 'logout' %}">Logout</a></p>
         {% else %}
-            <a href="{% url 'login' %}">Войти</a>
-            <a href="/register/">Регистрация</a>
+            <a href="{% url 'login' %}">Login</a>
+            <a href="/register/">Registration</a>
         {% endif %}
-		<a href="/">Домой</a>
-		<a href="/post/new/">Новый пост</a>
-		<a href="/drafts/">Черновики</a>
+		<a href="/">Home</a>
+		<a href="/post/new/">New post</a>
+		<a href="/drafts/">Drafts</a>
 
 	</div>
     <div class="footer">2019, Rogoyx Blog

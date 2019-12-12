@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'crispy_forms',
 ]
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -125,3 +126,9 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
 LOGIN_REDIRECT_URL = '/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'rogoyxblog@gmail.com'
+EMAIL_HOST_PASSWORD = 'blogblog'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
