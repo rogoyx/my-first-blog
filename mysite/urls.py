@@ -16,13 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views
-from register import views as v
+# from register import views as v
+# from polls import views as vi
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('register/', v.register, name='register'),
+    path('register/', include('register.urls')),
     path('accounts/login/', views.LoginView.as_view(), name='login'),
     path('accounts/logout/', views.LogoutView.as_view(next_page='/'), name='logout'),
     path('', include('blog.urls')),
+    # path('polls/', vi.index, name='polls'),
+    path('polls/', include('polls.urls')),
 ]
