@@ -1,13 +1,15 @@
 from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
-from .models import Post, Comment
-from .forms import PostForm, CommentForm, EmailPostForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.views import generic
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.template import RequestContext
+
+from .models import Post, Comment
+from .forms import PostForm, CommentForm, EmailPostForm
+from utils.utils import is_superuser
 
 
 def post_list(request):
@@ -49,6 +51,7 @@ def post_share(request, pk):
 
 
 @login_required
+@is_superuser
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)
@@ -63,6 +66,7 @@ def post_new(request):
 
 
 @login_required
+@is_superuser
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
@@ -78,12 +82,14 @@ def post_edit(request, pk):
 
 
 @login_required
+@is_superuser
 def post_draft_list(request):
     posts = Post.objects.filter(published_date__isnull=True).order_by('created_date')
     return render(request, 'blog/post_draft_list.html', {'posts': posts})
 
 
 @login_required
+@is_superuser
 def post_publish(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.publish()
@@ -91,12 +97,14 @@ def post_publish(request, pk):
 
 
 @login_required
+@is_superuser
 def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect('post_list')
 
 
+@login_required
 def add_comment_to_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
@@ -112,6 +120,7 @@ def add_comment_to_post(request, pk):
 
 
 @login_required
+@is_superuser
 def comment_approve(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.approve()
@@ -119,6 +128,7 @@ def comment_approve(request, pk):
 
 
 @login_required
+@is_superuser
 def comment_remove(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.delete()
