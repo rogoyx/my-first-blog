@@ -3,7 +3,6 @@ from django.conf import settings
 from .models import Post, Comment
 from django.contrib.auth.models import User
 
-# Create your tests here.
 
 class BlogTests(TestCase):
 
