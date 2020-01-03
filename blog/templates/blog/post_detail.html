@@ -18,6 +18,17 @@
         <p>
             <a href="{% url 'post_share' pk=post.pk %}">Share this post</a>
         </p>
+        {% for question in post.questions.all %}
+    <p>{{ question.question_text }}</p>
+        <form action="{% url 'polls:vote' question.id %}" method="post">
+    {% csrf_token %}
+    {% for choice in question.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+    {% endfor %}
+    <input type="submit" value="Vote">
+    </form>
+{% endfor %}
     </div>
     <hr>
     <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>

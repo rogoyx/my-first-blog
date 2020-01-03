@@ -4,6 +4,7 @@ from django.utils import timezone
 
 
 class Question(models.Model):
+    post = models.ForeignKey('blog.Post', on_delete=models.CASCADE, related_name='questions', null=True)
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
 
