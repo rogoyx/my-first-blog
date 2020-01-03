@@ -1,0 +1,112 @@
+{% load static %}
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style type="text/css">
+		.sidenav {
+			height: 90%;
+			width: 160px;
+			position: fixed;
+			z-index:1;
+			top: 10;
+			left: 10;
+			background-color:#D3F67B;
+			overflow-x: :hidden;
+			padding-top:40px;
+		}
+
+		.post{
+
+		}
+
+        .pages {
+
+        }
+
+		.sidenav p {
+			padding:6px 8px 6px 16px;
+			text-decoration: none;
+			text-align: none;
+			font-size:25px;
+			color: #AC8EF6;
+			display: block;
+			font-family: 'Pacifico'
+		}
+
+		.sidenav a {
+			padding:6px 8px 6px 16px;
+			text-decoration: none;
+			text-align: none;
+			font-size:25px;
+			color: #A5B8F0;
+			display: block;
+			font-family: 'Pacifico'
+		}
+
+		.sidenav a:hover{
+			color: #AC8EF6;
+		}
+
+		.main{
+			margin-left:160px;
+			padding: 0px 10px;
+		}
+
+		html {
+            position:relative;
+            min-height:100%;
+		}
+
+        .footer {
+            background-color: #D3F67B;
+            position: fixed;
+            left: 10;
+            right: 10;
+            bottom: 0;
+            height: 6,5%;
+            font-family: 'Cabin';
+            padding: 10px 10px 10px;
+            text-align: center;
+        }
+	    </style>
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}">
+        <title>Rogoyx blog</title>
+	    <link href="https://fonts.googleapis.com/css?family=Pacifico&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Cabin&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    </head>
+    <body>
+<!--    <nav class="navbar navbar-expand-lg navbar-dark bg-dark"></nav>-->
+    <div class="page-header">
+        <h1><a href="/">Rogoyx Blog</a></h1>
+    </div>
+    <div class="content">
+        <div class="row">
+            <div class="col-md-8">
+            {% block content %}
+            {% endblock %}
+            </div>
+        </div>
+    </div>
+    <div class="sidenav">
+        {% if user.is_authenticated %}
+        <p><small>Hello {{ user.username }}!</small><a href="{% url 'logout' %}">Logout</a></p>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="/register/">Registration</a>
+        {% endif %}
+		<a href="/">Home</a>
+		<a href="/post/new/">New post</a>
+		<a href="/drafts/">Drafts</a>
+
+	</div>
+    <div class="footer">2019, Rogoyx Blog
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
