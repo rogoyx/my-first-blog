@@ -16,17 +16,5 @@ def register(response):
     return render(response, "register/register.html", {"form": form})
 
 
-    #     return redirect(response, 'register/success_register.html')
-    # else:
-    #     return redirect(response, "register/failed_register.html")
-
-
-# def failed_register(request):
-#     return HttpResponse("Hi there! You've created wrong password. Please, try once more.")
-#
-#
-# def success_register(request):
-#     return HttpResponse("Hi there! You are successfully registered.")
-
 
 
