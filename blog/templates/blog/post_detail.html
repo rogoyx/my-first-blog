@@ -9,15 +9,18 @@
         {% else %}
             <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
         {% endif %}
+        <p></p>
         {% if user.is_authenticated %}
-            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-            <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+            <a class="btn btn-info" href="{% url 'post_edit' pk=post.pk %}">Edit</a>
+            <a class="btn btn-info" href="{% url 'post_remove' pk=post.pk %}">Remove</a>
         {% endif %}
+        <p></p>
         <h1>{{ post.title }}</h1>
         <p>{{ post.text|linebreaksbr }}</p>
         <p>
             <a href="{% url 'post_share' pk=post.pk %}">Share this post</a>
         </p>
+        <hr class="m-y-2">
         {% for question in post.questions.all %}
     <p>{{ question.question_text }}</p>
         <form action="{% url 'polls:vote' question.id %}" method="post">
@@ -26,20 +29,21 @@
         <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
         <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
     {% endfor %}
-    <input type="submit" value="Vote">
+    <button type="submit" class="btn btn-info">Vote</button>
     </form>
 {% endfor %}
     </div>
     <hr>
-    <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
+    <a class="btn btn-info" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
+    <p></p>
     {% for comment in post.comments.all %}
     {% if user.is_authenticated or comment.approved_comment %}
     <div class="comment">
         <div class="date">
             {{ comment.created_date }}
             {% if not comment.approved_comment %}
-                <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
-                <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+                <a class="btn btn-info" href="{% url 'comment_remove' pk=comment.pk %}">Remove</span></a>
+                <a class="btn btn-info" href="{% url 'comment_approve' pk=comment.pk %}">Ok</span></a>
             {% endif %}
         </div>
         <strong>{{ comment.author }}</strong>
