@@ -5,111 +5,177 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <style type="text/css">
-		.sidenav {
-			height: 90%;
-			width: 160px;
-			position: fixed;
-			z-index:1;
-			top: 10;
-			left: 10;
-			background-color:#D3F67B;
-			overflow-x: :hidden;
-			padding-top:40px;
-		}
+<!--		.sidenav {-->
+<!--			height: 90%;-->
+<!--			width: 160px;-->
+<!--			position: fixed;-->
+<!--			z-index:1;-->
+<!--			top: 10;-->
+<!--			left: 10;-->
+<!--			background-color:#D3F67B;-->
+<!--			overflow-x: :hidden;-->
+<!--			padding-top:40px;-->
+<!--		}-->
 
-		.post{
-
-		}
-
-        .pages {
-
-        }
-
-		.sidenav p {
-			padding:6px 8px 6px 16px;
-			text-decoration: none;
-			text-align: none;
-			font-size:25px;
-			color: #AC8EF6;
-			display: block;
-			font-family: 'Pacifico'
-		}
-
-		.sidenav a {
-			padding:6px 8px 6px 16px;
-			text-decoration: none;
-			text-align: none;
-			font-size:25px;
-			color: #A5B8F0;
-			display: block;
-			font-family: 'Pacifico'
-		}
-
-		.sidenav a:hover{
-			color: #AC8EF6;
-		}
-
-		.main{
-			margin-left:160px;
-			padding: 0px 10px;
-		}
-
-		html {
-            position:relative;
-            min-height:100%;
-		}
-
-        .footer {
-            background-color: #D3F67B;
-            position: fixed;
-            left: 10;
-            right: 10;
-            bottom: 0;
-            height: 6,5%;
-            font-family: 'Cabin';
-            padding: 10px 10px 10px;
-            text-align: center;
-        }
 	    </style>
         <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}?ver=2"/>
-        <title>Rogoyx blog</title>
-	    <link href="https://fonts.googleapis.com/css?family=Pacifico&subset=latin,cyrillic" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Cabin&subset=latin,cyrillic" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <title>Rogoyx Blog</title>
+<!--	    <link href="https://fonts.googleapis.com/css?family=Pacifico&subset=latin,cyrillic" rel="stylesheet" type="text/css">-->
+        <!-- Custom styles for this template -->
+        <link rel="stylesheet" href="{% static 'css/blog-home.css' %}">
+         <!-- Bootstrap core CSS -->
+        <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <!-- JS code for snow -->
         <script src="{% static 'js/snowfall2020.js' %}"/></script>
     </head>
+
     <body>
 
-    <div class="page-header">
-        <h1><a href="/">Rogoyx Blog</a></h1>
+    <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-info fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">Rogoyx Blog</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/post/new/">New post</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/drafts/">Drafts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/polls/">Polls</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contacts/">Contact me</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="content">
-        <div class="row">
-            <div class="col-md-8">
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Blog Entries Column -->
+      <div class="col-md-8">
+
+        <h1 class="my-4">
+          <small></small>
+        </h1>
+
+        <!-- Blog Posts -->
             {% block content %}
             {% endblock %}
+
+
+      </div>
+
+      <!-- Sidebar Widgets Column -->
+      <div class="col-md-4">
+
+        <!-- Side Widget -->
+        <div class="card my-4">
+          <h5 class="card-header">Side Widget</h5>
+          <div class="card-body">
+            {% if user.is_authenticated %}
+                <p><medium>Hello {{ user.username }}!</medium></p>
+                <p><a href="{% url 'logout' %}">Logout</a></p>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="/register/">Registration</a>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Search Widget -->
+        <div class="card my-4">
+          <h5 class="card-header">Search</h5>
+          <div class="card-body">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-info" type="button">Go!</button>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Categories Widget -->
+        <div class="card my-4">
+          <h5 class="card-header">Categories</h5>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-6">
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="#">Web Design</a>
+                  </li>
+                  <li>
+                    <a href="#">HTML</a>
+                  </li>
+                  <li>
+                    <a href="#">Freebies</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="#">JavaScript</a>
+                  </li>
+                  <li>
+                    <a href="#">CSS</a>
+                  </li>
+                  <li>
+                    <a href="#">Tutorials</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+
             </div>
         </div>
     </div>
-    <div class="sidenav">
-        {% if user.is_authenticated %}
-        <p><small>Hello {{ user.username }}!</small><a href="{% url 'logout' %}">Logout</a></p>
-        {% else %}
-            <a href="{% url 'login' %}">Login</a>
-            <a href="/register/">Registration</a>
-        {% endif %}
-		<a href="/">Home</a>
-		<a href="/post/new/">New post</a>
-		<a href="/drafts/">Drafts</a>
-        <a href="/polls/">Polls</a>
 
-	</div>
-    <div class="footer">2019-2020, Rogoyx Blog
+
+    <!-- Footer -->
+  <footer class="py-5 bg-info">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Rogoyx Blog 2019-2020</p>
+      <div class="m-0 text-center text-white"><a href="/#">Back to top</a></div>
     </div>
+    <!-- /.container -->
+  </footer>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

@@ -19,12 +19,13 @@
 
 	    </style>
         <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}?ver=2"/>
-        <title>Rogoyx blog</title>
-	    <link href="https://fonts.googleapis.com/css?family=Pacifico&subset=latin,cyrillic" rel="stylesheet" type="text/css">
-
+        <title>Rogoyx Blog</title>
+<!--	    <link href="https://fonts.googleapis.com/css?family=Pacifico&subset=latin,cyrillic" rel="stylesheet" type="text/css">-->
+        <!-- Custom styles for this template -->
         <link rel="stylesheet" href="{% static 'css/blog-home.css' %}">
          <!-- Bootstrap core CSS -->
         <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <!-- JS code for snow -->
         <script src="{% static 'js/snowfall2020.js' %}"/></script>
     </head>
 
@@ -73,7 +74,7 @@
           <small></small>
         </h1>
 
-        <!-- Blog Post -->
+        <!-- Blog Posts -->
             {% block content %}
             {% endblock %}
 
