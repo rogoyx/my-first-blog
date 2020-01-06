@@ -10,7 +10,8 @@ Login Here
      <form method="post" class="from-group">
 	{% csrf_token %}
 	{{form|crispy}}
+		 <hr class="m-y-2">
 	<p>Нет аккаунта? Создайте его <a href="/register">здесь</a></p>
-	<button type="submit" class="btn btn-success">Login</button>
+	<button type="submit" class="btn btn-secondary">Login</button>
     </form>
 {% endblock %}
