@@ -15,8 +15,8 @@ class CommentForm(forms.ModelForm):
         fields = ('author', 'text',)
 
 
-class EmailPostForm(forms.Form):
-    name = forms.CharField(max_length=25)
-    email = forms.EmailField()
-    to = forms.EmailField()
-    comments = forms.CharField(required=False, widget=forms.Textarea)
+# class EmailPostForm(forms.Form):
+#     name = forms.CharField(max_length=25)
+#     email = forms.EmailField()
+#     to = forms.EmailField()
+#     comments = forms.CharField(required=False, widget=forms.Textarea)

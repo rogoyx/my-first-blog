@@ -8,7 +8,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.template import RequestContext
 
 from .models import Post, Comment
-from .forms import PostForm, CommentForm, EmailPostForm
+from .forms import PostForm, CommentForm
 from utils.utils import is_superuser
 
 
@@ -32,22 +32,6 @@ def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'blog/post_detail.html', {'post': post})
 
-
-def post_share(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    sent = False
-    if request == 'POST':
-        form = EmailPostForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            post_url = request.build_absolute_uri(post.get_absolute_url())
-            subject = '{} ({}) recommends you reading "{}"'.format(cd['name'], cd['email'], post.title)
-            message = 'Read "{}" at {}\n\n{}\'s comments:{}'.format(post.title, post_url, cd['name'], cd['comments'])
-            send_mail(subject, message, 'admin@myblog.com', [cd['to']])
-            sent = True
-    else:
-        form = EmailPostForm()
-        return render(request, 'blog/post_share.html', {'post': post, 'form': form, 'sent': sent})
 
 
 @login_required

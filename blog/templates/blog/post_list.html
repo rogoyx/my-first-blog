@@ -10,6 +10,7 @@
 				</div>
 				<h1><a>{{ post.title }}</a></h1>
 				<p>{{ post.text|truncatewords:100|safe }}</p>
+
             	<p><a href="{% url 'post_detail' pk=post.pk %}" class="btn btn-info">Read completely</a></p>
 				<p><a href="{% url 'post_detail' pk=post.pk %}" class="btn btn-info">Comments: {{ post.comments.count }}</a></p>
 				</div>
